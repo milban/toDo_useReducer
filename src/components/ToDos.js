@@ -1,6 +1,10 @@
+
 import React, { useState } from "react";
 import { useToDos, useDispatch, useEditingNow } from "../context";
 import { COMPLETE, DEL, EDIT_START, EDIT_CONFIRM } from "../actions";
+import React from "react";
+import { useToDos, useDispatch } from "../context";
+import { COMPLETE, DEL } from "../actions";
 
 export default () => {
   const toDos = useToDos();

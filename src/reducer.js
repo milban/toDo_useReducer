@@ -8,6 +8,8 @@ import {
   EDIT_CONFIRM
 } from "./actions";
 export const initialState = { toDos: [], completeds: [], editingNow: false };
+import { ADD, DEL, COMPLETE, UNCOMPLETE } from "./actions";
+export const initialState = { toDos: [], completeds: [] };
 
 const reducer = (state, action) => {
   const editTarget = state.toDos.find(toDo => toDo.id === action.payload);
