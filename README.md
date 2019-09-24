@@ -2,4 +2,4 @@
 
 make To Do page using React useReducer hooks api
 
-[result page](https://nuo7q.csb.app/)
+[result page](https://ykriq.csb.app/)
