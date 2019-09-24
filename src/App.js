@@ -1,42 +1,19 @@
-import React, { useReducer, useState } from "react";
-import reducer, {
-  initialState,
-  ADD,
-  DEL,
-  COMPLETE,
-  UNCOMPLETE
-} from "./reducer";
+import React from "react";
+import AddToDo from "./AddToDo";
+import List from "./List";
+import { useToDos, useDispatch, useCompleteds } from "./context";
+import { COMPLETE, DEL, UNCOMPLETE } from "./actions";
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const [newToDo, setNewToDo] = useState("");
-  const onSubmit = e => {
-    e.preventDefault();
-    if (newToDo !== "") {
-      dispatch({ type: ADD, payload: newToDo });
-      setNewToDo("");
-    }
-  };
-  const onChange = e => {
-    const {
-      target: { value }
-    } = e;
-    setNewToDo(value);
-  };
+  const toDos = useToDos();
+  const completeds = useCompleteds();
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <h1>Add To do</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          value={newToDo}
-          type="text"
-          placeholder="Write to do"
-          onChange={onChange}
-        />
-      </form>
-      <ul>
-        <h2>To Dos</h2>
-        {state.toDos.map(toDo => (
+      <AddToDo />
+      <List name="To Dos">
+        {toDos.map(toDo => (
           <li key={toDo.id}>
             <span>{toDo.text}</span>
             <button
@@ -49,10 +26,9 @@ export default function App() {
             </button>
           </li>
         ))}
-      </ul>
-      <ul>
-        {state.completeds.length !== 0 && <h2>Completed</h2>}
-        {state.completeds.map(completed => (
+      </List>
+      <List name={completeds.length === 0 ? "" : "Completeds"}>
+        {completeds.map(completed => (
           <li key={completed.id}>
             <span>{completed.text}</span>
             <button
@@ -64,7 +40,7 @@ export default function App() {
             </button>
           </li>
         ))}
-      </ul>
+      </List>
     </div>
   );
 }
