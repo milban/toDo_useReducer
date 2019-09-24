@@ -8,6 +8,7 @@ export default ({ name }) => {
   const onSubmit = e => {
     e.preventDefault();
     if (newToDo !== "") {
+      dispatch({ type: ADD, payload: newToDo, editing: false });
       dispatch({ type: ADD, payload: newToDo });
       setNewToDo("");
     }

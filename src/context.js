@@ -31,4 +31,11 @@ export const useCompleteds = () => {
   return completeds;
 };
 
+export const useEditingNow = () => {
+  const {
+    state: { editingNow }
+  } = useContext(ToDosContext);
+  return editingNow;
+};
+
 export default ToDosProvider;
