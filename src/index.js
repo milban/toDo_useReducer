@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./components/App";
+import ToDosProvider from "./context";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(
+  <ToDosProvider>
+    <App />
+  </ToDosProvider>,
+  rootElement
+);
